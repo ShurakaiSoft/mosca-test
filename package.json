@@ -1,0 +1,23 @@
+{
+  "name": "mosca-demo",
+  "version": "0.0.1",
+  "description": "Spike to try out Mosca and RabbitMQ",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon mosca-server.js",
+    "test": "mocha test.js"
+  },
+  "dependencies": {
+    "mosca": "0.28.2",
+    "amqp": "0.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "1.3.7"
+  },
+  "keywords": [
+    "mosca",
+    "RabbitMQ"
+  ],
+  "author": "Stephen Parker",
+  "license": "MIT"
+}
