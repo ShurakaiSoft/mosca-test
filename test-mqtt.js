@@ -10,3 +10,5 @@
 // queue and we'll see what we get back out of it
 //
 
+// dependencies
+var mqtt = require('mqtt');

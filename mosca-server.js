@@ -7,6 +7,7 @@ var amqp  = require('amqp'),
 	mosca = require('mosca');
 
 
+
 // variables
 var moscaSettings,
 	pubsubsettings,

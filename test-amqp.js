@@ -15,19 +15,25 @@ var amqp = require('amqp');
 
 
 // variables
-var connection;
+var connection,
+	options;
 
-console.log('first Argument', process.argv[2]);
+options = {
+	host: 'localhost'
+};
+
+
 
 // create a connection to RabbitMQ
-connection = amqp.createConnection({ host: 'dev.rabbitmq.com'});
+console.log('connecting to ', options.host);
+connection = amqp.createConnection(options);
 
 connection.on('ready', function () {
 
 	console.log('got a ready event');
 
 	console.log('trying to publish something...');
-	connection.publish('', new Buffer('3031', 'hex'), {}, function (err) {
+	connection.publish('ascolatore5672', 'hello world', {}, function (err) {
 		console.log('after publishing we got', err);
 	});
 
@@ -37,9 +43,9 @@ connection.on('ready', function () {
 		q.bind('#');
 
 		// Receive messages
-		q.subscribe(function (message) {
-			console.log(message);
-		});
+		// q.subscribe(function (message) {
+		// 	console.log(message);
+		// });
 	});
 });
 
