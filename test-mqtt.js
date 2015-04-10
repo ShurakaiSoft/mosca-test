@@ -12,3 +12,21 @@
 
 // dependencies
 var mqtt = require('mqtt');
+
+// private varaibles
+var client;
+
+
+// create a client
+client = mqtt.connect('mqtt://localhost');
+
+
+client.on('connect', function () {
+	client.subscribe('presence');
+	client.publish('presence', 'Hello mqtt');
+});
+
+
+client.on('message', function (topic, message) {
+	console.log(message.toString());
+});

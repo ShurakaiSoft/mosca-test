@@ -43,9 +43,9 @@ connection.on('ready', function () {
 		q.bind('#');
 
 		// Receive messages
-		// q.subscribe(function (message) {
-		// 	console.log(message);
-		// });
+		q.subscribe(function (message) {
+			console.log('Received', message);
+		});
 	});
 });
 
