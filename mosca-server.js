@@ -31,11 +31,37 @@ moscaSettings = {
 server = new mosca.Server(moscaSettings);
 
 
-// attach some events
+// add some event handlers
 server.on('ready', function () {
 	console.log('mosca server is up and running...Yay!');
 });
 
+// fired when a client connects
 server.on('clientConnected', function (client) {
 	console.log('client %s connected', client.id);
+});
+
+// fired when a message is received
+server.on('published', function(packet, client) {
+  console.log('Client Published:', packet.payload);
+});
+
+// fired when a client subscribes to a topic
+server.on('subscribed', function(topic, client) {
+  console.log('Client subscribed to:', topic);
+});
+
+// fired when a client subscribes to a topic
+server.on('unsubscribed', function(topic, client) {
+  console.log('unsubscribed: %s', topic);
+});
+
+// fired when a client is disconnecting
+server.on('clientDisconnecting', function(client) {
+  console.log('clientDisconnecting: %s', client.id);
+});
+
+// fired when a client is disconnected
+server.on('clientDisconnected', function(client) {
+  console.log('clientDisconnected: %s', client.id);
 });

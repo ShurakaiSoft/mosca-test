@@ -23,7 +23,7 @@ options = {
 	host: 'localhost',
 	port: 1883
 };
-console.log('MQTT Client connecting to %s:%s', options.host, options.port);
+console.log('MQTT publisher client connecting to %s:%s', options.host, options.port);
 client = mqtt.connect(options);
 
 client.subscribe('presence');
