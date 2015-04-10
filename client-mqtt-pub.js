@@ -14,15 +14,20 @@
 var mqtt = require('mqtt');
 
 // private varaibles
-var client;
+var client,
+	options;
 
 
 // create a client
-console.log('MQTT Client');
-client = mqtt.connect({ host: 'localhost', port: 1883 });
+options = {
+	host: 'localhost',
+	port: 1883
+};
+console.log('MQTT Client connecting to %s:%s', options.host, options.port);
+client = mqtt.connect(options);
 
 client.subscribe('presence');
 
-console.log('Client publishing...');
+console.log('Publishing stuff...');
 client.publish('presence', 'Client is alive... test ping! hello world...' + Date());
 // client.end();

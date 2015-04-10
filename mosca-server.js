@@ -37,5 +37,5 @@ server.on('ready', function () {
 });
 
 server.on('clientConnected', function (client) {
-	console.log('client connected', client.id);
+	console.log('client %s connected', client.id);
 });
