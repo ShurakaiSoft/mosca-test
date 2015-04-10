@@ -30,4 +30,6 @@ client.subscribe('presence');
 
 console.log('Publishing stuff...');
 client.publish('presence', 'Client is alive... test ping! hello world...' + Date());
-// client.end();
+
+console.log('My work is done.');
+client.end();

@@ -11,6 +11,7 @@ var amqp  = require('amqp'),
 // variables
 var moscaSettings,
 	pubsubsettings,
+	mongoPubSubSettings,
 	server;
 
 
@@ -21,9 +22,19 @@ pubsubsettings = {
 	amqp: amqp,
 	exchange: 'ascolatore5672'
 };
+mongoPubSubSettings = {
+	type: 'mongo',
+	url: 'mongodb://localhost:27017/mqtt',
+	pubsubCollection: 'myCollection',
+	mongo: {}
+};
 moscaSettings = {
 	port: 1883,
-	packend: pubsubsettings
+	backend: mongoPubSubSettings,
+	persistence: {
+		factory: mosca.persistence.Mongo,
+		url: 'mongodb://localhost:27017/mqtt'
+	}
 };
 
 

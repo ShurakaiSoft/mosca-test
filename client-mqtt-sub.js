@@ -28,4 +28,6 @@ client.subscribe('presence');
 
 client.on('message', function (topic, message) {
 	console.log('%s received message: %s', Date().toString(), message);
+	console.log('And my work here is done.');
+	client.end();
 });
