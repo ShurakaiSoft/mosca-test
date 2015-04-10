@@ -19,7 +19,8 @@ var connection,
 	options;
 
 options = {
-	host: 'localhost'
+	host: 'localhost',
+	port: 1883
 };
 
 

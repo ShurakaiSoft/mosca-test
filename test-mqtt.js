@@ -18,15 +18,11 @@ var client;
 
 
 // create a client
-client = mqtt.connect('mqtt://localhost');
+console.log('MQTT Client');
+client = mqtt.connect({ host: 'localhost', port: 1883 });
 
+client.subscribe('presence');
 
-client.on('connect', function () {
-	client.subscribe('presence');
-	client.publish('presence', 'Hello mqtt');
-});
-
-
-client.on('message', function (topic, message) {
-	console.log(message.toString());
-});
+console.log('Client publishing...');
+client.publish('presence', 'Client is alive... test ping! hello world...' + Date());
+// client.end();

@@ -35,3 +35,7 @@ server = new mosca.Server(moscaSettings);
 server.on('ready', function () {
 	console.log('mosca server is up and running...Yay!');
 });
+
+server.on('clientConnected', function (client) {
+	console.log('client connected', client.id);
+});
