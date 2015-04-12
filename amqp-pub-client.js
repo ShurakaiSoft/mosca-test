@@ -35,7 +35,4 @@ connection.on('ready', function () {
 	connection.publish(queueName, 'hello world', {}, function (err) {
 		console.log('Successfully published:', !!err);
 	});
-
-	connection.end();
 });
-
