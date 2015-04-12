@@ -26,10 +26,10 @@ options = {
 console.log('MQTT publisher client connecting to %s:%s', options.host, options.port);
 client = mqtt.connect(options);
 
-client.subscribe('presence');
+client.subscribe('ascolatore5672');
 
 console.log('Publishing stuff...');
-client.publish('presence', 'Client is alive... test ping! hello world...' + Date());
+client.publish('ascolatore5672', 'Client is alive... test ping! hello world...' + Date());
 
 console.log('My work is done.');
 client.end();
