@@ -10,14 +10,11 @@ var amqp = require('amqp');
 
 // variables
 var connection,
-	options,
-	exchangeName;
+	options;
 
-exchangeName = 'ascolatore5672';
 queueName = 'ascolatore5672';
 options = {
-	host: 'localhost',
-	defaultExchangeName: exchangeName
+	host: 'localhost'
 };
 
 
@@ -29,7 +26,7 @@ connection = amqp.createConnection(options);
 // Add event handlers
 connection.on('ready', function () {
 
-	console.log('AMQP test client (subscriber) is listening for stuff');
+	console.log('AMQP test client (subscriber) is Ready');
 	connection.queue(queueName, function (queue) {
 		// catch all messages
 		queue.bind('#');

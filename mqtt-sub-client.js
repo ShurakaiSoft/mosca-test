@@ -17,7 +17,8 @@ var client,
 // start the client
 options = {
 	host: 'localhost',
-	port: 1883
+	port: 1883,
+	clientId: 'mqtt-Client'
 };
 
 console.log('MQTT subscriber client connecting to %s:%s', options.host, options.port);
@@ -27,6 +28,4 @@ client.subscribe('ascolatore5672');
 
 client.on('message', function (topic, message) {
 	console.log('%s received message: %s', Date().toString(), message);
-	console.log('And my work here is done.');
-	client.end();
 });

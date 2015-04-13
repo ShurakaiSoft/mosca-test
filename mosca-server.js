@@ -50,7 +50,8 @@ server = new mosca.Server(moscaSettingsRabbitMq);
 
 // add some event handlers
 server.on('ready', function () {
-	console.log('mosca server is up and running...Yay!');
+	console.log('Mosca server is connected the %s exchange', moscaSettingsRabbitMq.backend.exchange);
+	console.log('Mosca server is ready');
 });
 
 // fired when a client connects

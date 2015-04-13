@@ -11,13 +11,13 @@ var amqp = require('amqp');
 // variables
 var connection,
 	options,
-	exchangeName;
+	queueName,
+	message;
 
-exchangeName = 'ascolatore5672';
 queueName = 'ascolatore5672';
+message = 'Hello World';
 options = {
-	host: 'localhost',
-	defaultExchangeName: exchangeName
+	host: 'localhost'
 };
 
 
@@ -29,10 +29,8 @@ connection = amqp.createConnection(options);
 // add event handlers
 connection.on('ready', function () {
 
-	console.log('AMQP test client (publisher) is publishing stuff');
+	console.log('AMQP test client (publisher) is ready');
 
-	console.log('Publishing...');
-	connection.publish(queueName, 'hello world', {}, function (err) {
-		console.log('Successfully published:', !!err);
-	});
+	connection.publish(queueName, message);
+	console.log('Published: ', message);
 });
