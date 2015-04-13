@@ -7,50 +7,35 @@ var amqp  = require('amqp'),
 	mosca = require('mosca');
 
 
-
 // variables
-var
-	moscaSettingsRabbitMq,
-	moscaSettingsMongo,
+var settings,
+	pubSubSettings,
 	server;
 
-
 // setup some configuration
-moscaSettingsRabbitMq = {
-	port: 1883,
-	backend: {
+pubSubSettings = {
 		type: 'amqp',
 		json: false,
 		amqp: amqp,
-		exchange: 'ascolatore5672'
-	},
-	persistence: {
-		factory: mosca.persistence.RabbitMQ
-	}
+		exchange: 'ascolatore5672',
 };
-
-moscaSettingsMongo= {
+settings = {
 	port: 1883,
-	backend: {
-		type: 'mongo',
-		url: 'mongodb://localhost:27017/mqtt',
-		pubsubCollection: 'myCollection',
-		mongo: {}
-	},
+	backend: pubSubSettings,
 	persistence: {
 		factory: mosca.persistence.Mongo,
 		url: 'mongodb://localhost:27017/mqtt'
 	}
 };
 
+console.log('mongo URL', settings.persistence.url);
 
 // start the server
-server = new mosca.Server(moscaSettingsRabbitMq);
+server = new mosca.Server(settings);
 
 
 // add some event handlers
 server.on('ready', function () {
-	console.log('Mosca server is connected the %s exchange', moscaSettingsRabbitMq.backend.exchange);
 	console.log('Mosca server is ready');
 });
 

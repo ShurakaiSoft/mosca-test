@@ -18,13 +18,15 @@ var client,
 options = {
 	host: 'localhost',
 	port: 1883,
-	clientId: 'mqtt-Client'
+	clientId: 'mqtt-sub-client'
 };
 
 console.log('MQTT subscriber client connecting to %s:%s', options.host, options.port);
 client = mqtt.connect(options);
 
-client.subscribe('ascolatore5672');
+client.subscribe('ascolatore5672', function (err, granted) {
+	console.log('granted access to:', granted)
+});
 
 client.on('message', function (topic, message) {
 	console.log('%s received message: %s', Date().toString(), message);

@@ -21,15 +21,24 @@ var client,
 // create a client
 options = {
 	host: 'localhost',
-	port: 1883
+	port: 1883,
+	clientId: 'mqtt-pub-client',
+	clean: false
 };
 console.log('MQTT publisher client connecting to %s:%s', options.host, options.port);
 client = mqtt.connect(options);
 
-client.subscribe('ascolatore5672');
 
-console.log('Publishing stuff...');
-client.publish('ascolatore5672', 'Client is alive... test ping! hello world...' + Date());
+// add some events
+client.on('connect', function () {
+	console.log('we are connected');
+	client.subscribe('ascolatore5672', function (err, granted) {
+		console.log('granted:', granted);
+	});
 
-console.log('My work is done.');
-client.end();
+	console.log('Publishing stuff...');
+	client.publish('ascolatore5672', 'Client is alive... test ping! hello world...' + Date());
+
+	console.log('My work is done.');
+	client.end();
+})
